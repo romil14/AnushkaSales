@@ -2,3 +2,4 @@ packages/
 AnushkaSales.Web/obj/Debug/AnushkaSales.Web.csproj.FileListAbsolute.txt
 AnushkaSales.Test/obj/Debug/AnushkaSales.Test.csproj.FileListAbsolute.txt
 AnushkaSales.Model/obj/Debug/AnushkaSales.Model.csproj.FileListAbsolute.txt
+AnushkaSales.Web/App_Data/

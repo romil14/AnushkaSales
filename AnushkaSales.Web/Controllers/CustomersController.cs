@@ -12,6 +12,7 @@ using AnushkaSales.Model.Repositorys;
 
 namespace AnushkaSales.Web.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         //private AppDbContext db = new AppDbContext();

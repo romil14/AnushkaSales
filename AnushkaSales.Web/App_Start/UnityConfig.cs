@@ -2,6 +2,7 @@ using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using AnushkaSales.Model.Repositorys;
+using AnushkaSales.Web.Controllers;
 
 namespace AnushkaSales.Web.App_Start
 {
@@ -39,6 +40,8 @@ namespace AnushkaSales.Web.App_Start
             // TODO: Register your types here
             container.RegisterType<IBranchRepository, BranchRepository>();
             container.RegisterType<ICustomerRepository, CustomerRepository>();
+
+            container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }
 }
