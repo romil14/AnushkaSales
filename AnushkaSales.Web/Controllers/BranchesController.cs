@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AnushkaSales.Model;
 using AnushkaSales.Model.Models;
 using AnushkaSales.Model.Repositorys;
+using AnushkaSales.Web.Infrastructure;
 
 namespace AnushkaSales.Web.Controllers
 {
@@ -16,18 +17,21 @@ namespace AnushkaSales.Web.Controllers
     public class BranchesController : Controller
     {
         //private AppDbContext db = new AppDbContext();
-        IBranchRepository db;
-        public BranchesController(IBranchRepository db)
-        {
+        IBranchRepository branchRepository;
 
-            this.db = db;
+        private readonly IUserDetailsProvider userDetailsProvider;
+        public BranchesController(IBranchRepository branchRepository, IUserDetailsProvider userDetailsProvider)
+        {
+            this.branchRepository = branchRepository;
+            this.userDetailsProvider = userDetailsProvider;
         }
 
         // GET: Branches
         public ActionResult Index()
         {
+            var userName = this.userDetailsProvider.UserName;
             //return View(db.Branches.ToList());
-            var result = db.All();
+            var result = branchRepository.All();
             return View(result);
         }
 
@@ -39,7 +43,7 @@ namespace AnushkaSales.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Branch branch = db.Branches.Find(id);
-            Branch branch = db.FindById(Convert.ToInt32(id));
+            Branch branch = branchRepository.FindById(Convert.ToInt32(id));
             if (branch == null)
             {
                 return HttpNotFound();
@@ -64,7 +68,7 @@ namespace AnushkaSales.Web.Controllers
             {
                 //db.Branches.Add(branch);
                 //db.SaveChanges();
-                db.Add(branch);
+                branchRepository.Add(branch);
                 return RedirectToAction("Index");
             }
 
@@ -79,7 +83,7 @@ namespace AnushkaSales.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Branch branch = db.Branches.Find(id);
-            Branch branch = db.FindById(Convert.ToInt32(id));
+            Branch branch = branchRepository.FindById(Convert.ToInt32(id));
             if (branch == null)
             {
                 return HttpNotFound();
@@ -98,7 +102,7 @@ namespace AnushkaSales.Web.Controllers
             {
                 //db.Entry(branch).State = EntityState.Modified;
                 //db.SaveChanges();
-                db.Update(branch);
+                branchRepository.Update(branch);
                 
                 return RedirectToAction("Index");
             }
@@ -113,7 +117,7 @@ namespace AnushkaSales.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Branch branch = db.Branches.Find(id);
-            Branch branch = db.FindById(Convert.ToInt32(id));
+            Branch branch = branchRepository.FindById(Convert.ToInt32(id));
             if (branch == null)
             {
                 return HttpNotFound();
@@ -129,8 +133,8 @@ namespace AnushkaSales.Web.Controllers
             //Branch branch = db.Branches.Find(id);
             //db.Branches.Remove(branch);
             //db.SaveChanges();
-            Branch branch = db.FindById(Convert.ToInt32(id));
-            db.Delete(branch);
+            Branch branch = branchRepository.FindById(Convert.ToInt32(id));
+            branchRepository.Delete(branch);
             
             return RedirectToAction("Index");
         }
@@ -139,7 +143,7 @@ namespace AnushkaSales.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                branchRepository.Dispose();
             }
             base.Dispose(disposing);
         }

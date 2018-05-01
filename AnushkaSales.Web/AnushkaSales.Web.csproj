@@ -229,6 +229,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\UserDetailsProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -319,6 +320,10 @@
     <ProjectReference Include="..\AnushkaSales.Model\AnushkaSales.Model.csproj">
       <Project>{70e9a086-db8f-4780-a8d8-e7fce56ddb5f}</Project>
       <Name>AnushkaSales.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnushkaSales.Shared\AnushkaSales.Shared.csproj">
+      <Project>{38d50d02-5b66-4146-80e9-84e08d8caa3e}</Project>
+      <Name>AnushkaSales.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -3,6 +3,9 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using AnushkaSales.Model.Repositorys;
 using AnushkaSales.Web.Controllers;
+using AnushkaSales.Web.Infrastructure;
+using Microsoft.Owin.Security;
+using System.Web;
 
 namespace AnushkaSales.Web.App_Start
 {
@@ -42,6 +45,8 @@ namespace AnushkaSales.Web.App_Start
             container.RegisterType<ICustomerRepository, CustomerRepository>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<IAuthenticationManager>(new InjectionFactory(o => System.Web.HttpContext.Current.GetOwinContext().Authentication));
+            container.RegisterType<IUserDetailsProvider, UserDetailsProvider>();
         }
     }
 }

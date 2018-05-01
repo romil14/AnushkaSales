@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnushkaSales.Test", "Anushk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnushkaSales.Web", "AnushkaSales.Web\AnushkaSales.Web.csproj", "{C344EDF2-6808-470F-8BF5-673C64BF62C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnushkaSales.Shared", "AnushkaSales.Shared\AnushkaSales.Shared.csproj", "{38D50D02-5B66-4146-80E9-84E08D8CAA3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C344EDF2-6808-470F-8BF5-673C64BF62C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C344EDF2-6808-470F-8BF5-673C64BF62C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C344EDF2-6808-470F-8BF5-673C64BF62C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D50D02-5B66-4146-80E9-84E08D8CAA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D50D02-5B66-4146-80E9-84E08D8CAA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D50D02-5B66-4146-80E9-84E08D8CAA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D50D02-5B66-4146-80E9-84E08D8CAA3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

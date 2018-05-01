@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using AnushkaSales.Model;
 using AnushkaSales.Model.Models;
 using AnushkaSales.Model.Repositorys;
+using AnushkaSales.Web.Infrastructure;
+using System.Security.Claims;
+using AnushkaSales.Shared.Infrastructure;
 
 namespace AnushkaSales.Web.Controllers
 {
@@ -16,16 +19,27 @@ namespace AnushkaSales.Web.Controllers
     public class CustomersController : Controller
     {
         //private AppDbContext db = new AppDbContext();
-        ICustomerRepository _customerRepository;
-        public CustomersController(ICustomerRepository customerRepository)
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IUserDetailsProvider userDetailsProvider;
+        public CustomersController(ICustomerRepository customerRepository, IUserDetailsProvider userDetailsProvider)
         {
             this._customerRepository = customerRepository;
+            this.userDetailsProvider = userDetailsProvider;
         }
 
         // GET: Customers
         public ActionResult Index()
         {
-            var result = _customerRepository.All();
+            
+            this.userDetailsProvider.SetClaims(new List<Claim>
+            {
+                AsClaimTypes.GetClaim(AsClaimTypes.UserName, "Romil-test", ClaimValueTypes.String),
+                AsClaimTypes.GetClaim(AsClaimTypes.LoginId, "Romil@test.com", ClaimValueTypes.String),
+                AsClaimTypes.GetClaim(AsClaimTypes.UserId, "1", ClaimValueTypes.Integer32),
+                AsClaimTypes.GetClaim(AsClaimTypes.IsAdmin, "True", ClaimValueTypes.Boolean)
+            });
+
+           var result = _customerRepository.All();
             return View(result);
         }
 
